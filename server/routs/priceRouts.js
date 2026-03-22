@@ -1,0 +1,12 @@
+const priceController=require("../controllers/priceController")
+const  {verifyJWT}=require("../middleware/verifyJWT")
+const {isAdmin}=require("../middleware/isAdmin")
+const express=require("express")
+const router=express.Router()
+router.use(verifyJWT)
+router.get("/",isAdmin,priceController.getPrices)
+router.get("/:_id",isAdmin,priceController.getPriceById)
+router.post("/",isAdmin,priceController.addPrice)
+router.put("/",isAdmin,priceController.updatePrice)
+router.delete("/:_id",isAdmin,priceController.deletePrice)
+module.exports=router

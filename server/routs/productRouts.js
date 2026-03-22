@@ -1,0 +1,13 @@
+const productController=require("../controllers/productController")
+const express=require("express")
+const  {verifyJWT}=require("../middleware/verifyJWT")
+const {isAdmin}=require("../middleware/isAdmin")
+const router=express.Router()
+//router.use(verifyJWT)
+router.get("/",/*isAdmin,*/productController.getProducts)
+router.get("/:_id",isAdmin,productController.getProductById)
+router.get("/getByName",productController.getProductByName)
+router.post("/"/*,isAdmin*/,productController.addProduct)
+router.put("/"/*,isAdmin*/,productController.updateProduct)
+router.delete("/:_id"/*,isAdmin*/,productController.deleteProduct)
+module.exports=router

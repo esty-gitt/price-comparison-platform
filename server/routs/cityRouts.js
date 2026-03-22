@@ -1,0 +1,12 @@
+const cityController=require("../controllers/cityController")
+const {verifyJWT}=require("../middleware/verifyJWT")
+const {isAdmin}=require("../middleware/isAdmin")
+const express=require("express")
+const router=express.Router()
+//router.use(verifyJWT)
+router.get("/",cityController.getCities)
+router.get("/:_id",cityController.getCityById)
+router.post("/"/*,isAdmin*/,cityController.addCity)
+router.put("/"/*,isAdmin*/,cityController.updateCity)
+router.delete("/:_id"/*,isAdmin*/,cityController.deleteCity)
+module.exports=router

@@ -1,0 +1,12 @@
+const userController=require("../controllers/userController")
+const  {verifyJWT}=require("../middleware/verifyJWT")
+const {isAdmin}=require("../middleware/isAdmin")
+const express=require("express")
+const router=express.Router()
+router.use(verifyJWT)
+router.get("/",isAdmin,userController.getUsers)
+router.get("/:_id",isAdmin,userController.getUserById)
+router.post("/",isAdmin,userController.addUser)
+router.put("/",isAdmin,userController.updateUser)
+router.delete("/:_id",isAdmin,userController.deleteUser)
+module.exports=router

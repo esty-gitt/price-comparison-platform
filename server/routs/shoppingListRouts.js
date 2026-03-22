@@ -1,0 +1,12 @@
+const ShoppingListController=require("../controllers/shoppingListController")
+const express=require("express")
+const  {verifyJWT}=require("../middleware/verifyJWT")
+const router=express.Router()
+router.use(verifyJWT)
+router.get("/",ShoppingListController.getShoppingLists)
+router.get("/:_id",ShoppingListController.getShoppingListById)
+router.get("/userId/:_id",ShoppingListController.getShoppingListUserId)
+router.post("/",ShoppingListController.addShoppingList)
+router.put("/",ShoppingListController.updateShoppingList)
+router.delete("/:_id",ShoppingListController.deleteShoppingList)
+module.exports=router
